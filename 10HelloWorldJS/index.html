@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>:: 10 Hello World ::</title>
+  </head>
+  <body>
+
+
+    <script>
+        var hello = "Hello World";
+
+        //1
+        var h1 = document.createElement("h1");
+        h1.textContent = hello;
+        document.body.appendChild(h1);
+      
+        //2
+        var p = document.createElement("p");
+        p.textContent = hello;
+        document.body.appendChild(p);
+      
+
+        //3
+        document.body
+        .appendChild(
+            Object.assign(
+                document.createElement('button'),
+                { innerHTML : hello ,
+                    id:'button-hello'
+                }
+            )
+        );
+        document.getElementById("button-hello").style.margin="10px";
+        document.getElementById("button-hello").style.padding="5px";
+
+
+        //4        
+        document.body
+        .appendChild(
+            Object.assign(
+                document.createElement('div'),
+                {
+                    id:'div-hello1'
+                }
+            )
+        );
+        document.getElementById("div-hello1").innerHTML = hello;
+
+        //5
+        document.write("<h3 style='color: #DF7401;'>" + hello +"</h3>");
+
+
+        //6
+        document.write("<div id='div-hello2'>" + hello +"</div>");
+        document.getElementById("div-hello2").style.fontSize="40px";
+
+
+        //7
+        document.write("<div id='div-hello3'>" + hello.toUpperCase() +"</div>");
+        document.getElementById("div-hello3").style.background="black";
+        document.getElementById("div-hello3").style.color="white";
+        document.getElementById("div-hello3").style.padding="15px";
+        document.getElementById("div-hello3").style.margin="10px";
+        
+        
+        //8
+        document.write("<div id='div-hello4'></div>");
+        document.getElementById("div-hello4").style.background="black";
+        document.getElementById("div-hello4").style.color="#8fd053";
+        document.getElementById("div-hello4").style.padding="5px";
+        document.getElementById("div-hello4").style.margin="10px";
+        document.getElementById("div-hello4").style.height="20px";
+        for (let i=0; i<=hello.length-1; i++){
+          setTimeout(()=> document.getElementById("div-hello4").innerHTML += hello[i], 200 * i);
+        }
+        
+        
+        //9
+        document.write("<input type='text' id='input-hello' />");
+        for (let i=0; i<=hello.length-1; i++){
+          setTimeout(()=> document.getElementById("input-hello").value += hello[i], 200 * i);
+        }
+        
+        
+        //10
+        document.write("<div id='div-hello5'></div>");
+        let fontSize = 18;
+        for (let i=0; i<=hello.length-1; i++){
+          
+          fontSize += (i*2)  ;
+          document.getElementById("div-hello5").innerHTML += "<span style='font-size: " + fontSize + "px;'>" + hello[i] + "</span>";
+          
+        }
+        
+
+    </script>
+  </body>
+</html>
