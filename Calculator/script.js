@@ -1,63 +1,74 @@
+let history = document.getElementById('history');
 let result = document.getElementById('result');
-let num1 = 0;
-let num2 = 0;
 let operator = '';
-let text = '';
+let calculated = false;
+let numberAllowed = '1234567890.';
+let operatorAllowed = '-+*/';
+let lastIsOperator = false;
 
 document.addEventListener ('keypress', (event) => {
 
     let keyPress = event.key;
-    let numberList = '1234567890';
-    let operatorList = '-+*/.';
     
-    if (keyPress === '=' || keyPress === 'Enter') calculate();
+    if (keyPress === '=') calculate();
     if (keyPress.toLocaleLowerCase() === 'c' ) clearResult();
-
-    if (numberList.includes(keyPress)){
-        this.addNumber(keyPress);
+   
+    if (numberAllowed.includes(keyPress) || operatorAllowed.includes(keyPress)){
+        insert(keyPress);
     }
-    if (operatorList.includes(keyPress)){
-        this.addOperator(keyPress);
-    }
+   
 });
 
-function addNumber(number) {
-    if (operator === '') {
-        num1 = parseFloat(num1.toString() + number);
-        result.value = num1;
-    } else {
-        num2 = parseFloat(num2.toString() + number);
-        result.value = num2;
-    }
+
+function back() {
+    operator = '';
+    result.value = result.value.substring(0, result.value.length -1);
+
+    console.log(calculated);
+    if (calculated == true) history.value = '';
 }
 
-function addOperator(op) {
-    operator = op;
-    result.value = '';
+function insert(num){
+
+    if (calculated) {
+        if (numberAllowed.includes(num)){
+            history.value = '';
+            result.value = '';
+        }
+
+        calculated = false;
+    }
+
+    if (operatorAllowed.includes(num)){
+        if (operator != '') return false;
+        if (result.value == '') return false;
+        operator = num;
+    }else{
+        operator = '';
+    }
+
+    result.value += num;
 }
+
+
 
 function clearResult() {
-    num1 = 0;
-    num2 = 0;
-    operator = '';
+    operator = '';    
     result.value = '';
+    history.value = '';
+    calculated = false;
 }
 
 function calculate() {
-    let total = 0;
-    switch (operator) {
-        case '+':
-            total = num1 + num2;
-            break;
-        case '-':
-            total = num1 - num2;
-            break;
-        case '*':
-            total = num1 * num2;
-            break;
-        case '/':
-            total = num1 / num2;
+    
+    if(result.value)
+    {
+        history.value = result.value + '=';
+        result.value = eval(result.value);
+        calculated = true;
     }
-    result.value = total;
-
+    else
+    {
+        return false;
+    }    
 }
