@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>:: Form ::</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loadingOverlay" class="overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="left">
+
+        <form id="formulario">
+            <div class="row">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" maxlength="50">
+            </div>
+
+            <div class="row">
+                <label for="interesse">Interesse:</label>
+                <select id="interesse" name="interesse" class="select">
+                    <option value="esportes">Esportes</option>
+                    <option value="tecnologia">Tecnologia</option>
+                    <option value="viagens">Viagens</option>
+                </select>
+            </div>
+
+
+            <div class="row">
+                <label>Sexo:</label>
+                <input type="radio" id="masculino" name="sexo" value="masculino"> Masculino
+                <input type="radio" id="feminino" name="sexo" value="feminino"> Feminino
+            </div>
+
+            <div class="row">
+                <label for="gostos">Gostos:</label>
+                <input type="checkbox" id="esportes" name="gostos" value="esportes"> Esportes
+                <input type="checkbox" id="tecnologia" name="gostos" value="tecnologia"> Tecnologia
+                <input type="checkbox" id="viagens" name="gostos" value="viagens"> Viagens
+            </div>
+            <div class="row">
+                <button type="button" onclick="startSubmit()" id="buttonSubmit">Enviar</button>
+            </div>
+            <div class="row">
+                <div id="errors"></div>
+            </div>
+            
+
+        </form>
+
+
+
+
+    </div>
+
+    <div class="right">
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Interesse</th>
+                    <th>Sexo</th>
+                    <th>Gostos</th>
+                </tr>
+            </thead>
+            <tbody id="respostas">
+            </tbody>
+        </table>
+
+
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
